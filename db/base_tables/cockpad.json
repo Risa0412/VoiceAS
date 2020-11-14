@@ -1,0 +1,4 @@
+{
+  "user": ["id integer PRIMARY KEY", "user_name text NOT NULL"],
+  "recipe": ["id integer PRIMARY KEY", "user_id integer NOT NULL", "presentation text NOT NULL", "ingredients text NOT NULL"]
+}
