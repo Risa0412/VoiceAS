@@ -16,10 +16,11 @@ class DbBuilder:
         Set the base tables sql syntax
         :return:
         """
-        PATH = 'base_tables'
+        PATH = 'db/base_tables'
         f = []
         for (dirpath, dirnames, filenames) in os.walk(PATH):
             f.extend(filenames)
+            print('ok')
             break
 
         for files in f:
@@ -50,13 +51,16 @@ class DbBuilder:
         :param sql:
         :return:
         """
+        print(3)
         # constuire les relations entre les tables
         self.sql_db.create_table(sql)
 
-if __name__ == '__main__':
+if __name__ == '__main__': # import
     # TODO Add argparse and logging
     database = DB('db/database.db')
     db = DbBuilder(database)
+# if __name__ == '__main__':は毎回一番下。
+# 
 
     ''' Populate base table '''
 

@@ -12,12 +12,16 @@ class ServiceChooser:
     def __init__(self):
         self.db_path = os.path.join(os.getcwd(), 'db/database.db')
 
+    def create_db(self):
+        database = DB(self.db_path)
+        db = DbBuilder(database)
+
     def get_time(self):
         assistant('時間')
         # subprocess.call('python sub_process.py -r 時間')
 
 
 obj = ServiceChooser()
-obj.get_time()
+obj.create_db()
 # database = DB('db/database.db')
 # db = DbBuilder(database)

@@ -1,0 +1,3 @@
+{
+    "user_name":["id integer PRIMARY KEY", "username text NOT NULL"]
+}
