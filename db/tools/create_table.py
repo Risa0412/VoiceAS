@@ -20,7 +20,6 @@ class DbBuilder:
         f = []
         for (dirpath, dirnames, filenames) in os.walk(PATH):
             f.extend(filenames)
-            print('ok')
             break
 
         for files in f:
@@ -55,7 +54,7 @@ class DbBuilder:
         # constuire les relations entre les tables
         self.sql_db.create_table(sql)
 
-if __name__ == '__main__': # import
+if __name__ == '__main__': # importされたとき、__name__の値はそのファイル名。__main__になるのは、実行ファイルのとき。
     # TODO Add argparse and logging
     database = DB('db/database.db')
     db = DbBuilder(database)

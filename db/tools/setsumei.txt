@@ -1,0 +1,22 @@
+＊＊＊このフォルダーの説明＊＊＊
+
+db_sqlite.py
+    DBについての関数が入っているファイル。
+    DBファイルがすでに存在すれば、DB接続、存在しなければ、DBファイルを作成してDB接続。
+    この関数は、SQL文の実行をする。
+    SQL文は別のcreate_table.pyで作成されている。
+
+
+create_table.py
+    テーブル作成を行う。
+    SQL文の作成をする。
+    jsonから、テーブル作成のSQL文を作成する。
+
+    def create_base_tables():
+        base_tablesフォルダの中にjsonファイルがあれば、jsonファイルを読み取って、set_table()にjsonのデータを渡す。
+
+    def set_table(args:jsonデータ):
+        jsonデータの中から、テーブル名と、カラムを取ってCREATE文を作成し、create_tables()にCREATE文を渡して実行。
+
+    create_tables(CREATE文):
+        db_sqliteのcreate_tables()を実行する。

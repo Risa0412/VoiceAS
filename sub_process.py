@@ -10,18 +10,30 @@ from time import strftime
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 from word_extractor import get_words_list
+from db.tools.db_sqlite import DB
+from db.tools.create_table import DbBuilder
 
 import speech_recognition as sr
 import pyttsx3
 
-def get_name():
-    _name = ""
-    if os.path.exists('name.txt'):
-        file = open("name.txt","r")
-        _name = file.read()
-        file.close()
 
-    return _name
+database = DB('db/database.db')
+db = DbBuilder(database)
+
+def get_name():
+    # DB接続
+    
+    # user_nameテーブルのusernameを取得。SELECT
+    return database.task_select("SELECT username FROM user_name;")[0]
+    # SELECTの結果を_nameに渡す。
+
+    # _name = ""
+    # if os.path.exists('name.txt'):
+    #     file = open("name.txt","r")
+    #     _name = file.read()
+    #     file.close()
+
+    # return _name
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -113,11 +125,13 @@ def assistant(command):
 if __name__ == '__main__':
     while True:
         name = get_name()
-        if name == '':
+        print(name[0][0])
+        if not name:
             engine.say('お名前はなんですか？')
-        # else:
-        #     engine.say(f'おはよう、{name}たん')
-        #     print(f'話してください...')
+        else:
+            engine.say(f'おはよう、{name[0][0]}たん')
+            print(f'話してください...')
+        engine.runAndWait()
         assistant(myCommand())
         
 
