@@ -24,8 +24,15 @@ class ServiceChooser:
     def get_page(self):
         bu = Builder()
         url = 'https://cookpad.com/search/パスタ'
-        print(url)
-        bu.get_data(url)
+        data = bu.get_data(url)
+        # lst = []
+        # for key in data.keys():
+        #     lst.append(key)
+        lst = [key for key in data.keys()]
+
+        print(lst)
+        user_choice = 3
+        print(data[lst[user_choice-1]])
 
 
 obj = ServiceChooser()

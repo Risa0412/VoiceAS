@@ -19,16 +19,21 @@ class Builder:
         self.get_crawler(url)
 
         # 全てのaタグ(リンクがある項目)を取ってprint
-        titles = self.crawler.get_soup().find_all("a", href=True)
+        titles = self.crawler.get_soup().find_all("a", {'class': 'recipe-title'}, href=True)
+        title_dic = {}
         for title in titles:
-            print(title)
+            # print(title.getText(), title['href'])
+            title_dic[title.getText()] = title['href']
+            
+
+        return title_dic
 
 if __name__ == '__main__':
     bu = Builder()
     url = 'https://cookpad.com/search/パスタ'
 
     print(url)
-    bu.get_data(url)
+    print(bu.get_data(url))
 
 # 来週
 # titleからcssクラスとリンクとタイトルのテキストを取得。
