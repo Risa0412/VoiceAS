@@ -1,0 +1,17 @@
+***toolsフォルダの説明***
+
+importer_saver.py
+    インポートと保存を行う。
+    from_json(path, filename)
+        引数：インポートしたいファイルのパス、ファイル名
+        戻り値：読み取ったファイルのデータ
+        ファイルからJSONのデータを取ってPythonディクショナリに入れる。
+
+word_extractor.py
+    文中の名詞を抽出する。
+    後で使用しない単語（助詞など）を取り除く。
+    get_words_list(sentence)
+        引数：文章
+        戻り値：単語の要素数３のリスト
+        例：get_words_list('youtubeでカメラの作り方')
+            return => ["youtube", "カメラ", "作り方"]

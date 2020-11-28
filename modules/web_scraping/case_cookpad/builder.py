@@ -3,7 +3,7 @@
 from pprint import pprint
 import sys
 sys.path.append("../..")
-from crawler import WebCrawler
+from modules.web_scraping.tools.crawler import WebCrawler
 # from page_list import PageList as PL
 
 
@@ -23,12 +23,12 @@ class Builder:
         for title in titles:
             print(title)
 
+if __name__ == '__main__':
+    bu = Builder()
+    url = 'https://cookpad.com/search/パスタ'
 
-bu = Builder()
-url = 'https://cookpad.com/search/パスタ'
-
-print(url)
-bu.get_data(url)
+    print(url)
+    bu.get_data(url)
 
 # 来週
 # titleからcssクラスとリンクとタイトルのテキストを取得。

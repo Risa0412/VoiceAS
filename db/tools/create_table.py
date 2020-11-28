@@ -40,7 +40,6 @@ class DbBuilder:
                 if counter < len(args) - 1:
                     sql += ', '
             sql += ');'
-            print(sql)
             self.create_tables(sql)
         
 
@@ -50,7 +49,6 @@ class DbBuilder:
         :param sql:
         :return:
         """
-        print(3)
         # constuire les relations entre les tables
         self.sql_db.create_table(sql)
 

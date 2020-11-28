@@ -3,13 +3,15 @@ import datetime
 import time
 import re
 import os
+import sys
 import webbrowser
 import subprocess
 import argparse
 from time import strftime
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
-from word_extractor import get_words_list
+sys.path.append("../../..")
+from tools.word_extractor import get_words_list
 from db.tools.db_sqlite import DB
 from db.tools.create_table import DbBuilder
 
@@ -63,7 +65,7 @@ def myCommand():
     
 def assistant(command):
     if 'そこまで' in command:
-        engine.say(f'さようなら、{name}')
+        engine.say(f'さようなら、{name[0][0]}ちゃん')
         engine.runAndWait()
         exit()
 
