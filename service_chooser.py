@@ -39,14 +39,17 @@ class ServiceChooser:
     def tester(self):
         self.get_page()# レシピの表示
         print(self.lst)
+        self.get_user_input()
+
+    def get_user_input(self):
         user = input('どんなレシピが見たいですか？\n')
         try:
             user = int(user)
-            while user > len(self.lst):
-                if user <= len(self.lst):
-                    url = 'https://cookpad.com' + self.data[self.lst[user-1]]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
-                # user = input('どんなレシピが見たいですか？\n')
-                '''recusive'''
+            if user > len(self.lst):
+                self.get_user_input()
+                return
+            else:
+                url = 'https://cookpad.com' + self.data[self.lst[user-1]]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
 
         except ValueError:
             url = 'https://cookpad.com' + self.data[user]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
