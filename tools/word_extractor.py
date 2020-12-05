@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from janome.analyzer import Analyzer
 from janome.charfilter import *
 from janome.tokenfilter import *

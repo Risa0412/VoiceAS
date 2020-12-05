@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import argparse
 import logging
@@ -46,7 +47,7 @@ class ServiceChooser:
                     url = 'https://cookpad.com' + self.data[self.lst[user-1]]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
                 # user = input('どんなレシピが見たいですか？\n')
                 '''recusive'''
-                
+
         except ValueError:
             url = 'https://cookpad.com' + self.data[user]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
         webbrowser.open(url)
