@@ -1,0 +1,13 @@
+＊＊＊web_scrappingの説明＊＊＊
+
+tools.crawler.py
+    WebCrawler
+        urlからHTMLコードを取る。parsing
+        urlの中に日本語が含まれていれば、the_kanji_problemで変換を行う。
+        このClassで取得したHTMLコードから、別のClassでデータの抽出を行う。
+
+case_cookpad.builder.py
+    オブジェクトを用意し、関数 get_data(url)を呼び出す。
+    URLのクックパッドのページから、料理名とその料理の作り方のページのURLを取得する。
+    get_data(url)
+        urlから取ったHTMLコードから、aタグに{'class': 'recipe-title'}が含まれているものを探して、aタグの内容:href部分としてディクショナリ作成。

@@ -2,6 +2,7 @@ import os
 import argparse
 import logging
 import datetime
+import webbrowser
 # import pytz
 from db.tools.create_table import DbBuilder
 from db.tools.db_sqlite import DB
@@ -24,19 +25,37 @@ class ServiceChooser:
     def get_page(self):
         bu = Builder()
         url = 'https://cookpad.com/search/パスタ'
-        data = bu.get_data(url)
+        self.data = bu.get_data(url)# ディクショナリ型で返ってくる。
         # lst = []
         # for key in data.keys():
         #     lst.append(key)
-        lst = [key for key in data.keys()]
+        self.lst = [key for key in self.data.keys()]
 
-        print(lst)
-        user_choice = 3
-        print(data[lst[user_choice-1]])
+        # print(lst)
+        # user_choice = 3
+        # print(data[lst[user_choice-1]])
+
+    def tester(self):
+        self.get_page()# レシピの表示
+        print(self.lst)
+        user = input('どんなレシピが見たいですか？\n')
+        try:
+            user = int(user)
+            while user > len(self.lst):
+                if user <= len(self.lst):
+                    url = 'https://cookpad.com' + self.data[self.lst[user-1]]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
+                # user = input('どんなレシピが見たいですか？\n')
+                '''recusive'''
+                
+        except ValueError:
+            url = 'https://cookpad.com' + self.data[user]# 選んだ料理名のクックパッドのページのURLを作成。self.data[料理名] = recipeのID
+        webbrowser.open(url)
+
 
 
 obj = ServiceChooser()
 # obj.create_db()
-obj.get_page()
+# obj.get_page()
 # database = DB('db/database.db')
 # db = DbBuilder(database)
+obj.tester()

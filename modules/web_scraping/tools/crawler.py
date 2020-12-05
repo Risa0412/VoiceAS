@@ -6,7 +6,7 @@ from urllib.parse import quote
 
 
 class WebCrawler:
-    def __init__(self, url, agent='Mozilla/5.0', decoder='utf-8', parser='html.parser'):
+    def __init__(self, url, agent='Mozilla/5.0', decoder='utf-8', parser='html.parser'):# htmlでparsing
         """
         get soup
         :param url: str
@@ -34,9 +34,9 @@ class WebCrawler:
         result = ''
         for letter in url_to_test:
             if len(letter.encode('utf-8')) > 1:# 漢字・ひらがなの時、3になる。
-                letter = quote(letter)
+                letter = quote(letter)# quote(日本語の一文字)は、日本語の一文字をASCII化する。
             result += letter
         return result
 
-    def get_soup(self):
+    def get_soup(self):# soup(HTML)を取得。__init__()では作成しない。
         return self.soup

@@ -24,9 +24,9 @@ class Builder:
         for title in titles:
             # print(title.getText(), title['href'])
             title_dic[title.getText()] = title['href']
-            
-
         return title_dic
+
+    
 
 if __name__ == '__main__':
     bu = Builder()
