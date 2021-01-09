@@ -9,9 +9,12 @@ from janome.tokenizer import Tokenizer
 # word_kindに応じて文章から抜き出した単語動詞を結合して一つの単語にする。
 def word_assembler(word_part_of_speech, token, result_list, word_kind):
     if word_kind[0] in word_part_of_speech[0] and word_kind[1] in token.part_of_speech:
-        past_index = result_list.index(word_part_of_speech[1])
-        result_list[past_index] = f"{word_part_of_speech[1]}{token.surface}"
-        result_list.pop(past_index + 1)
+        try:
+            past_index = result_list.index(word_part_of_speech[1])
+            result_list[past_index] = f"{word_part_of_speech[1]}{token.surface}"
+            result_list.pop(past_index + 1)
+        except:
+            pass
 
 
 def get_words_list(sentence):
@@ -29,6 +32,7 @@ def get_words_list(sentence):
 
     a = Analyzer(char_filters=char_filters, token_filters=token_filters)
 
+    sentence = sentence.replace('.', '')
     for token in a.analyze(sentence):
         result_list.append(token)
 
@@ -43,7 +47,7 @@ def get_words_list(sentence):
     word_part_of_speech = [('', '')]
     word_kinds = [('名詞', '名詞'), ('動詞', '助動詞')]# word_assembler()で引数になる単語の種類のリストを作成する。
     # iterate over the tokenize sentence and search for 2 'meishi' who would be following each other
-    for token in t.tokenize(s):
+    for token in t.tokenize(sentence):
         for word_kind in word_kinds:# word_kindsの要素数だけword_assemler()を実行する。
             word_assembler(word_part_of_speech, token, result_list, word_kind)# 単語の結合
         word_part_of_speech = (token.part_of_speech, token.surface)# word_kindsの条件で結合された単語を含むリスト

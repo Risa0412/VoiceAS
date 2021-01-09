@@ -9,3 +9,9 @@ def from_json(path, filename):
         data = json.load(f)
     return data
     
+def from_txt(path, filename):
+    if '.txt' in filename:
+        filename = filename.replace('.txt', '')
+    with open(f'{path}/{filename}.txt', mode='r', encoding='utf-8') as f:
+        data = f.read()
+    return data
